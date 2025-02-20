@@ -1,7 +1,7 @@
 version: 'latest'
 services:
   rabbit:
-    image: "rabbitmq:latest-management"
+    image: "rabbitmq:3-management"
     environment:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "rabbitmq"

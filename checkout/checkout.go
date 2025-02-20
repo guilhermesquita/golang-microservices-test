@@ -1,6 +1,7 @@
 package main
 
 import (
+	"checkout/queue"
 	"encoding/json"
 	"fmt"
 	"html/template"
@@ -54,8 +55,11 @@ func finish(w http.ResponseWriter, r *http.Request) {
 	order.ProductId = r.FormValue("product_id")
 
 	data, _ := json.Marshal(order)
-
 	fmt.Sprintln(string(data))
+
+	connection := queue.Connect()
+	queue.Notify(data, "checkout_ex", "", connection)
+
 	w.Write([]byte("Processou"))
 
 }
